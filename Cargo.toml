@@ -1,0 +1,7 @@
+[package]
+name = "unlambda-rs"
+version = "0.1.0"
+authors = ["Joe Frikker <jfrikker@gmail.com>"]
+edition = "2018"
+
+[dependencies]
