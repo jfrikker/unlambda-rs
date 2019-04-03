@@ -14,19 +14,20 @@ pub fn lex(program: &str) -> Result<Vec<Token>, Error> {
     
     while let Some(c) = program.next() {
         let token = match c {
-            '`' => Token::Apply,
+            '`' => Some(Token::Apply),
             '.' => match program.next() {
-                Some(c) => Token::Dot(c),
+                Some(c) => Some(Token::Dot(c)),
                 None => return Err(Error::UnexpectedEndOfInput)
             },
-            'i' => Token::I,
-            's' => Token::S,
-            'k' => Token::K,
-            'r' => Token::R,
-            'e' => Token::E,
+            'i' => Some(Token::I),
+            's' => Some(Token::S),
+            'k' => Some(Token::K),
+            'r' => Some(Token::R),
+            'e' => Some(Token::E),
+            '\n' => None,
             _ => return Err(Error::IllegalCharacter(c))
         };
-        res.push(token);
+        token.map(|t| res.push(t));
     }
 
     Ok(res)
