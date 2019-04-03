@@ -7,7 +7,8 @@ pub enum TreeNode {
     I,
     S,
     K,
-    R
+    R,
+    E
 }
 
 pub fn parse(tokens: Vec<Token>) -> Rc<TreeNode> {
@@ -23,6 +24,7 @@ fn parse_helper<I>(tokens: &mut I) -> Rc<TreeNode>
         Some(Token::S) => Rc::new(TreeNode::S),
         Some(Token::K) => Rc::new(TreeNode::K),
         Some(Token::R) => Rc::new(TreeNode::R),
+        Some(Token::E) => Rc::new(TreeNode::E),
         Some(Token::Apply) => {
             let func = parse_helper(tokens);
             let arg = parse_helper(tokens);

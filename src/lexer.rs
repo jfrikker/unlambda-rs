@@ -4,7 +4,8 @@ pub enum Token {
     I,
     S,
     K,
-    R
+    R,
+    E
 }
 
 pub fn lex(program: &str) -> Result<Vec<Token>, Error> {
@@ -22,6 +23,7 @@ pub fn lex(program: &str) -> Result<Vec<Token>, Error> {
             's' => Token::S,
             'k' => Token::K,
             'r' => Token::R,
+            'e' => Token::E,
             _ => return Err(Error::IllegalCharacter(c))
         };
         res.push(token);

@@ -5,7 +5,9 @@ mod unlambda;
 use unlambda::evaluate;
 
 fn main() {
-    let prog = r"```s``s``sii`ki`k.*``s``s`ks``s`k`s`ks``s``s`ks``s`k`s`kr``s`k`sikk`k``s`ksk";
+    let prog = r"`.d`.c`.d`.c`.d`.c`.d``e
+`````````````.H.e.l.l.o.,. .W.o.r.l.dii```````````````iid.l.r.o.W. .,.o.l.l.e.H.`````````````
+e``d.`c.`d.`c.`d.`c.`d.`";
     match evaluate(prog, std::io::stdout()) {
         Ok(_) => (),
         Err(e) => {

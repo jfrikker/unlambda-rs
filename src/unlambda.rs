@@ -16,7 +16,8 @@ pub enum Value {
     S2(ValueRef, ValueRef),
     K,
     K1(ValueRef),
-    R
+    R,
+    E
 }
 
 enum StackFrame {
@@ -47,7 +48,8 @@ fn convert_basic(tree: &TreeNode) -> ValueRef {
         TreeNode::I => Rc::new(Value::I),
         TreeNode::S => Rc::new(Value::S),
         TreeNode::K => Rc::new(Value::K),
-        TreeNode::R => Rc::new(Value::R)
+        TreeNode::R => Rc::new(Value::R),
+        TreeNode::E => Rc::new(Value::E)
     }
 }
 
@@ -112,6 +114,10 @@ impl <O> Evaluator<O>
             Value::K1(arg1) => Ok(arg1.clone()),
             Value::R => {
                 write!(self.out, "\n").map_err(|e| Error::OutputError(e))?;
+                Ok(arg)
+            },
+            Value::E => {
+                self.stack.clear();
                 Ok(arg)
             }
         }
